@@ -14,7 +14,7 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light mb-5">
         <div class="container">
           <a class="navbar-brand" href="#">eHike</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,5 +36,58 @@
         </div>
     </nav>
     <!-- end Navbar -->
+
+    
+    <div id="app">
+        <!-- Header -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-header" v-for="header of headers">
+                    <h1 class="header-title">{{ header.title }}</h1>
+                    <h2 class="header-prof">{{ header.prof }}</h2>
+                    <h6>{{ header.desc }}</h6>
+                    <a href="#" class="btn btn-success me-3 btn-head">Order</a>
+                </div>
+                <div class="col-lg-6">
+                    <img src="img/header.svg" alt="acc" class="acc-img">
+                </div>
+            </div>
+        </div>
+        <!-- End Header -->
+
+        <!-- Best Product -->
+        <div class="container">
+            <div class="row">
+                
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Best Product -->
+    </div>
+    
+
+    <!-- Product Review -->
+
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:'#app',
+            data: {
+                headers: [
+                    {
+                        title: 'Home of Hike Shoes',
+                        prof: 'Original With Best Durability',
+                        desc: 'Discount 65% for this mont'    
+                    }
+                ]
+            }
+        })
+    </script>
 </body>
 </html>

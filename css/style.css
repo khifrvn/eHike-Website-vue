@@ -8,3 +8,23 @@ body {
 .navbar-brand {
   font-weight: 550;
 }
+
+.header-title {
+  font-size: 40px;
+  font-weight: 700 !important;
+  color: #34364a;
+}
+
+.text-header {
+  margin-top: 7rem !important;
+}
+
+.header-prof {
+  font-size: 20px;
+  font-weight: 500 !important;
+}
+
+.acc-img {
+  width: 400px;
+  height: auto;
+}
