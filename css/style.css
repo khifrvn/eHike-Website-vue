@@ -1,0 +1,10 @@
+body {
+  overflow-x: hidden;
+  font-family: poppins !important;
+  color: #162717;
+  background: #efeeec;
+}
+
+.navbar-brand {
+  font-weight: 550;
+}
