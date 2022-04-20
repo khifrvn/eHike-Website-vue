@@ -32,7 +32,12 @@ body {
 .product-text {
   margin-top: 7rem !important;
   font-size: 30px;
-  font-weight: 700 !important;
+  font-weight: 500 !important;
+}
+
+.productTxt {
+  font-size: 30px;
+  font-weight: 500 !important;
 }
 
 .imgBrand {
