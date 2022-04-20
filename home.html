@@ -46,7 +46,7 @@
                     <h1 class="header-title">{{ header.title }}</h1>
                     <h2 class="header-prof">{{ header.prof }}</h2>
                     <h6>{{ header.desc }}</h6>
-                    <a href="#" class="btn btn-success me-3 btn-head">Order</a>
+                    <a href="collection.html" id="btnabt" class="btn btn-success me-3 w-50">Order</a>
                 </div>
                 <div class="col-lg-6">
                     <img src="img/header.svg" alt="acc" class="acc-img">
@@ -58,24 +58,30 @@
         <!-- Best Product -->
         <div class="container">
             <div class="row">
-                
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h2 class="product-text">Best Product</span></h2>
+                <div class="col-md-3 mb-3 mt-3" v-for="shoe of shoes">
+                    <div class="card border-light shadow p-3 mb-5 bg-white rounded">
+                        <img :src="shoe.image" class="card-img-top" alt="...">
+                        <div class="card-body text-center">
+                        <h5 class="card-title">{{ shoe.title }}</h5>
+                        <p class="card-text">${{ shoe.price }}</p>
+                        <p class="card-text">{{ shoe.desc }}</p>
+                        <a href="collection.html" class="btn btn-success d-block">See More</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- End Best Product -->
+        <footer-component></footer-component>
     </div>
+
     
 
-    <!-- Product Review -->
-
     <script type="text/javascript">
+        Vue.component('footer-component', {
+            template: `<div class="footer-copyright text-center py-3 mt-5">© 2022 Copyright by Muhammad Khifransyah A M & Salman Affandi Yusuf</div>`
+        })
         var vm = new Vue({
             el:'#app',
             data: {
@@ -83,9 +89,39 @@
                     {
                         title: 'Home of Hike Shoes',
                         prof: 'Original With Best Durability',
-                        desc: 'Discount 65% for this mont'    
+                        desc: 'Discount 65% for this month'    
                     }
-                ]
+                ],
+                shoes: [
+                    {
+                        id: 1,
+                        title: 'Brook Cascadia',
+                        price: 130,
+                        desc: 'Latest model is competitively light yet stable.',
+                        image: 'https://www.switchbacktravel.com/sites/default/files/image_fields/Best%20Of%20Gear%20Articles/Hiking%20and%20Backpacking/Hiking%20Shoes/Brooks%20Cascadia%2016%20trail%20running%20shoe.jpeg'
+                    },
+                    {
+                        id: 2,
+                        title: 'Salomon X Ultra 4',
+                        price: 150,
+                        desc: 'A ideal balance of weight and on-trail performance.',
+                        image: 'https://www.switchbacktravel.com/sites/default/files/image_fields/Best%20Of%20Gear%20Articles/Hiking%20and%20Backpacking/Hiking%20Shoes/Salomon%20X%20Ultra%204%20GTX%20hiking%20shoes.jpg'
+                    },
+                    {
+                        id: 3,
+                        title: 'Scarpa Rush Low',
+                        price: 169,
+                        desc: 'Trail runner-like agility with a boost in protection and stability.',
+                        image: 'https://www.switchbacktravel.com/sites/default/files/image_fields/Best%20Of%20Gear%20Articles/Hiking%20and%20Backpacking/Hiking%20Shoes/Scarpa%20Rush%20Low%20GTX%20hiking%20shoe.jpeg'
+                    },
+                    {
+                        id: 4,
+                        title: 'Altra Lone Peak',
+                        price: 140,
+                        desc: 'It’s a thru-hiker favorite thanks to its light feel, and cushioning.',
+                        image: 'https://www.switchbacktravel.com/sites/default/files/image_fields/Best%20Of%20Gear%20Articles/Hiking%20and%20Backpacking/Hiking%20Shoes/Altra%20Lone%20Peak%206%20hiking%20shoe.jpeg'
+                    }
+                ] 
             }
         })
     </script>
