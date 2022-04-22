@@ -40,24 +40,138 @@
     <!-- Product List -->
     <div id="app">
         <div class="container">
-            <div class="row">
+            <div v-if="!isShowingCart" id="shoes" class="row">
+                <div class="col-md-6">
                 <h2 class="productTxt">List <strong>Product</strong></h2>
+                </div>
+                <div class="col-md-6 me-auto">
+                <span class="stats">
+                    {{ cart.items.length }} 
+                    <template v-if="cart.items.length == 1">item</template>
+                    <template v-else>items</template> 
+                    in cart, totalling {{ cartTotal | currency }}
+                    <button class="btn btn-success" @click="isShowingCart = true">Cart</button>
+                </span>
+                </div>
                 <input type="text" class="form-control mt-2 mb-2" v-model="search" placeholder="Search Product...">
-                <div class="row row-cols-1 row-cols-md-4 g-4">
+                <div class="row row-cols-1 row-cols-md-4 g-4" >
                     <div class="card shadow p-3 mb-5 bg-white rounded" v-for="(shoe, index) of filterProduks" :key="index">
-                        <img :src="shoe.image" class="card-img-top" alt="...">
+                        <img :src="shoe.picture" class="card-img-top" alt="...">
                         <div class="card-body text-center">
-                        <h5 class="card-title">{{ shoe.title }}</h5>
-                        <p class="card-text">${{ shoe.price }}</p>
-                        <p class="card-text">{{ shoe.desc }}</p>
-                        <a href="detail.html" class="btn btn-success d-block">Buy Now</a>
+                        <h5 class="card-title">{{ shoe.name }}</h5>
+                        <p class="card-text"><strong>${{ shoe.price }}</strong></p>
+                        <p class="card-text"><strong>{{ shoe.inStock }}</strong> in Stock</p>
+                        <p class="card-text">{{ shoe.description }}</p>
                         </div>
+                        <button class="btn btn-success" @click="addProductToCart(shoe)" :disabled="shoe.inStock == 0" >Add to cart</button>     
                     </div>
                 </div>
             </div>
+
+            <!-- Modal 
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-image">
+                            <thead>
+                              <tr>
+                                <th scope="col">Images</th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Price</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr v-for="item in cart.items">
+                                <td class="w-25">
+                                    <img :src="item.shoe.picture" class="img-fluid img-thumbnail" alt="sheep">
+                                </td>
+                                <td>{{ item.shoe.name }}</td>
+                                <td>{{ item.quantity }} &nbsp;
+                                    <button class="btn btn-success" @click="increaseQuantity(item)" :disabled="item.shoe.inStock == 0">+</button>
+                                    <button class="btn btn-danger" @click="decreaseQuantity(item)">-</button></td>
+                                <td>{{ item.quantity * item.shoe.price | currency }}</td>
+                              </tr>
+                            </tbody>
+                        </table> 
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            -->
+
+            <div v-else>
+                <h1>Cart</h1>
+                <table v-if="cart.items.length > 0" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Image</th>
+                      <th>Product</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="item in cart.items">
+                      <td>
+                            <img width="100" :src="item.shoe.picture" class="img-fluid img-thumbnail" alt="sheep">
+                      </td>
+                      <td>{{ item.shoe.name }}</td>
+                      <td>
+                        {{ item.quantity }} &nbsp;
+                        <button class="btn btn-success" @click="increaseQuantity(item)" :disabled="item.shoe.inStock == 0">+</button>
+                        <button class="btn btn-danger" @click="decreaseQuantity(item)">-</button>
+                      </td>
+                      <td>{{ item.quantity * item.shoe.price | currency }}</td>
+                    </tr>
+                    
+                    <tr>
+                      <td class="text-right" colspan="3">
+                        <strong>Subtotal</strong>
+                      </td>
+                      
+                      <td>{{ cartTotal | currency }}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-right" colspan="3">
+                          <strong>Taxes</strong>
+                        </td>
+                        
+                        <td>{{ taxAmount | currency }}</td>
+                    </tr>
+    
+                    <tr>
+                      <td class="text-right" colspan="3">
+                        <strong>Grand total</strong>
+                      </td>
+                      
+                      <td>{{ cartTotal + taxAmount | currency }}</td>
+                    </tr>
+                    
+                    <tr>
+                      <td colspan="3"></td>
+                      <td><button class="btn btn-success" @click="checkout">Checkout</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+                
+                <p v-else>Your cart is currently empty.</p>
+            </div>
         </div>
+
         <!-- End Product List -->
         <footer-component></footer-component>
+        </div>
     </div>
 
     
