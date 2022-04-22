@@ -64,48 +64,7 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Modal 
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table table-image">
-                            <thead>
-                              <tr>
-                                <th scope="col">Images</th>
-                                <th scope="col">Product</th>
-                                <th scope="col">Qty</th>
-                                <th scope="col">Price</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr v-for="item in cart.items">
-                                <td class="w-25">
-                                    <img :src="item.shoe.picture" class="img-fluid img-thumbnail" alt="sheep">
-                                </td>
-                                <td>{{ item.shoe.name }}</td>
-                                <td>{{ item.quantity }} &nbsp;
-                                    <button class="btn btn-success" @click="increaseQuantity(item)" :disabled="item.shoe.inStock == 0">+</button>
-                                    <button class="btn btn-danger" @click="decreaseQuantity(item)">-</button></td>
-                                <td>{{ item.quantity * item.shoe.price | currency }}</td>
-                              </tr>
-                            </tbody>
-                        </table> 
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            -->
-
+            
             <div v-else>
                 <h1>Cart</h1>
                 <table v-if="cart.items.length > 0" class="table table-striped">
